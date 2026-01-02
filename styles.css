@@ -837,7 +837,8 @@ body {
     max-width: 550px;
 }
 
-.project-demo img {
+.project-demo img,
+.project-demo video {
     width: 100%;
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
