@@ -180,60 +180,50 @@
                 </div>
             </div>
             
-            <!-- SVG Mindmap - Cropped viewBox to reduce whitespace -->
-            <svg class="mindmap-svg" viewBox="0 500 1920 580" preserveAspectRatio="xMidYMax meet">
+            <!-- SVG Mindmap - Full viewBox for cards and mindmap -->
+            <svg class="mindmap-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMax meet">
                 <defs>
                     <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
                         <polygon points="0 0, 10 4, 0 8" fill="#000000"/>
                     </marker>
                 </defs>
                 
-                <!-- 1. Solid 180° upper semicircle: diameter=640px, radius=320, center (960,1080) -->
-                <path d="M 640 1080 A 320 320 0 0 1 1280 1080 Z" fill="#000000"/>
+                <!-- 1. Solid 180° upper semicircle: diameter=710px, radius=355, center (960,1080) -->
+                <path d="M 605 1080 A 355 355 0 0 1 1315 1080 Z" fill="#000000"/>
                 
-                <!-- 2. Dashed outline semicircle: diameter=660px, radius=330, center (960,1080), stroke 4px -->
-                <path d="M 630 1080 A 330 330 0 0 1 1290 1080" fill="none" stroke="#000000" stroke-width="4" stroke-dasharray="8,4"/>
+                <!-- 2. Dashed outline semicircle: diameter=780px, radius=390, center (960,1080), stroke 4px -->
+                <path d="M 570 1080 A 390 390 0 0 1 1350 1080" fill="none" stroke="#000000" stroke-width="4" stroke-dasharray="8,4"/>
                 
                 <!-- Center text inside arc -->
                 <text x="960" y="920" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="48">AI in Education</text>
                 <text x="960" y="980" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="48">Research</text>
                 
-                <!-- 5 Function circles on diameter 950px semicircle (radius 475 from center 960,1080) -->
-                <!-- Circle radius = 80, unified font size 26px -->
+                <!-- 5 Function circles on diameter 1100px semicircle (radius 550 from center 960,1080) -->
+                <!-- Circle radius = 120, font: single-line 30px, two-line 24px -->
                 
-                <!-- Vocabulary: angle 160° -> x=514, y=918 -->
-                <circle class="svg-node" id="node-vocab" cx="514" cy="918" r="80" fill="#000000" onclick="toggleBranch(1)" style="cursor:pointer"/>
-                <text x="514" y="926" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Vocabulary</text>
+                <!-- Vocabulary: angle 160° -> x=443, y=892 -->
+                <circle class="svg-node" id="node-vocab" cx="443" cy="892" r="120" fill="#000000" onclick="toggleBranch(1)" style="cursor:pointer"/>
+                <text x="443" y="900" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="30">Vocabulary</text>
                 
-                <!-- Writing: angle 125° -> x=688, y=691 -->
-                <circle class="svg-node" id="node-writing" cx="688" cy="691" r="80" fill="#000000" onclick="toggleBranch(2)" style="cursor:pointer"/>
-                <text x="688" y="699" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Writing</text>
+                <!-- Writing: angle 125° -> x=645, y=629 -->
+                <circle class="svg-node" id="node-writing" cx="645" cy="629" r="120" fill="#000000" onclick="toggleBranch(2)" style="cursor:pointer"/>
+                <text x="645" y="637" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="30">Writing</text>
                 
-                <!-- Assessment & Motivation: angle 90° -> x=960, y=605 -->
-                <circle class="svg-node" id="node-assess" cx="960" cy="605" r="80" fill="#000000" onclick="toggleBranch(3)" style="cursor:pointer"/>
-                <text x="960" y="597" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">Assessment</text>
-                <text x="960" y="621" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">& Motivation</text>
+                <!-- Assessment & Motivation: angle 90° -> x=960, y=530 -->
+                <circle class="svg-node" id="node-assess" cx="960" cy="530" r="120" fill="#000000" onclick="toggleBranch(3)" style="cursor:pointer"/>
+                <text x="960" y="520" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">Assessment</text>
+                <text x="960" y="548" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">& Motivation</text>
                 
-                <!-- Curriculum Design: angle 55° -> x=1232, y=691 -->
-                <circle class="svg-node" id="node-curric" cx="1232" cy="691" r="80" fill="#000000" onclick="toggleBranch(4)" style="cursor:pointer"/>
-                <text x="1232" y="683" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">Curriculum</text>
-                <text x="1232" y="707" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">Design</text>
+                <!-- Curriculum Design: angle 55° -> x=1275, y=629 -->
+                <circle class="svg-node" id="node-curric" cx="1275" cy="629" r="120" fill="#000000" onclick="toggleBranch(4)" style="cursor:pointer"/>
+                <text x="1275" y="619" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">Curriculum</text>
+                <text x="1275" y="647" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">Design</text>
                 
-                <!-- Review: angle 20° -> x=1406, y=918 -->
-                <circle class="svg-node" id="node-review" cx="1406" cy="918" r="80" fill="#000000" onclick="toggleBranch(5)" style="cursor:pointer"/>
-                <text x="1406" y="926" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Review</text>
+                <!-- Review: angle 20° -> x=1477, y=892 -->
+                <circle class="svg-node" id="node-review" cx="1477" cy="892" r="120" fill="#000000" onclick="toggleBranch(5)" style="cursor:pointer"/>
+                <text x="1477" y="900" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="30">Review</text>
                 
-                <!-- 4px dashed arrows FROM dashed arc edge (radius 330) TO circle bottom -->
-                <!-- Arrow from dashed arc point to Vocabulary circle bottom (514, 998) -->
-                <line x1="700" y1="970" x2="580" y2="990" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
-                <!-- Arrow from dashed arc to Writing circle bottom (688, 771) -->
-                <line x1="780" y1="800" x2="720" y2="765" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
-                <!-- Arrow from dashed arc to Assessment circle bottom (960, 685) -->
-                <line x1="960" y1="750" x2="960" y2="683" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
-                <!-- Arrow from dashed arc to Curriculum circle bottom (1232, 771) -->
-                <line x1="1140" y1="800" x2="1200" y2="765" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
-                <!-- Arrow from dashed arc to Review circle bottom (1406, 998) -->
-                <line x1="1220" y1="970" x2="1340" y2="990" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
+                <!-- Dashed arrows FROM dashed arc edge TO circle (removed per user request) -->
             </svg>
         </div>
     </section>

@@ -420,7 +420,7 @@ body {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 30%; /* 580/1920 aspect ratio for cropped SVG */
+    padding-bottom: 50%; /* Increased to give more space for cards above mindmap */
     max-width: 1920px;
     margin: 0 auto;
 }
@@ -538,379 +538,212 @@ body {
     transform: scale(1.02);
 }
 
-/* Vocabulary cards - Fixed positions with anchor arrows */
-/* Circle center: (514, 918), radius: 80 -> left edge at x=434 */
+/* Vocabulary cards - Positioned in upper empty space */
 .vocab-card-1 {
     position: absolute;
     left: 1%;
-    top: 8%;
-    width: 22%;
-    max-width: 400px;
-    min-height: 180px;
-    border-radius: 5px;
-}
-
-/* Arrow from card right-bottom to Vocabulary circle left edge */
-.vocab-card-1::before {
-    content: '';
-    position: absolute;
-    right: -8%;
-    bottom: 10%;
-    width: 8%;
-    height: 4px;
-    background-image: repeating-linear-gradient(to right, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
-.vocab-card-1::after {
-    content: '';
-    position: absolute;
-    right: -10%;
-    bottom: calc(10% - 4px);
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 10px solid #000;
-}
-
-.vocab-poster {
-    position: absolute;
-    left: 24%;
-    top: 8%;
-    width: 22%;
-    max-width: 400px;
-}
-
-.vocab-poster img {
-    width: 100%;
-    max-width: 400px;
-}
-
-.vocab-poster::before {
-    display: none;
-}
-
-.vocab-poster::after {
-    display: none;
-}
-
-/* Writing cards - Fixed positions with anchor arrows */
-/* Circle center: (688, 691), radius: 80 -> left edge at x=608, top at y=611 */
-.writing-card-1 {
-    position: absolute;
-    left: 1%;
-    top: 22%;
+    top: 5%;
     width: 18%;
     max-width: 320px;
     min-height: 150px;
     border-radius: 5px;
 }
 
-/* Arrow from card right edge to Writing circle left edge */
-.writing-card-1::before {
-    content: '';
-    position: absolute;
-    right: -10%;
-    top: 60%;
-    width: 10%;
-    height: 4px;
-    background-image: repeating-linear-gradient(to right, #000 0, #000 4px, transparent 4px, transparent 8px);
+/* No arrows */
+.vocab-card-1::before,
+.vocab-card-1::after {
+    display: none;
 }
 
-.writing-card-1::after {
-    content: '';
+.vocab-poster {
     position: absolute;
-    right: -12%;
-    top: calc(60% - 4px);
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 10px solid #000;
+    left: 20%;
+    top: 5%;
+    width: 18%;
+    max-width: 320px;
+}
+
+.vocab-poster img {
+    width: 100%;
+    max-width: 320px;
+}
+
+.vocab-poster::before,
+.vocab-poster::after {
+    display: none;
+}
+
+/* Writing cards - Positioned in upper empty space */
+.writing-card-1 {
+    position: absolute;
+    left: 1%;
+    top: 25%;
+    width: 16%;
+    max-width: 280px;
+    min-height: 120px;
+    border-radius: 5px;
+}
+
+/* No arrows */
+.writing-card-1::before,
+.writing-card-1::after {
+    display: none;
 }
 
 .writing-card-2 {
     position: absolute;
-    left: 22%;
+    left: 18%;
     top: 5%;
-    width: 24%;
-    max-width: 440px;
-    min-height: 180px;
+    width: 20%;
+    max-width: 360px;
+    min-height: 150px;
     border-radius: 5px;
 }
 
-/* Arrow from card bottom to Writing circle top */
-.writing-card-2::before {
-    content: '';
-    position: absolute;
-    left: 25%;
-    bottom: -10%;
-    width: 4px;
-    height: 10%;
-    background-image: repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
+/* No arrows */
+.writing-card-2::before,
 .writing-card-2::after {
-    content: '';
-    position: absolute;
-    left: calc(25% - 4px);
-    bottom: -14%;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #000;
+    display: none;
 }
 
 .writing-poster {
     position: absolute;
-    left: 48%;
+    left: 40%;
     top: 5%;
-    width: 24%;
-    max-width: 440px;
+    width: 20%;
+    max-width: 360px;
 }
 
 .writing-poster img {
     width: 100%;
-    max-width: 440px;
+    max-width: 360px;
 }
 
-.writing-poster::before {
-    display: none;
-}
-
+.writing-poster::before,
 .writing-poster::after {
     display: none;
 }
 
-/* Assessment cards - Fixed positions with anchor arrows */
-/* Circle center: (960, 605), radius: 80 -> top at y=525 */
+/* Assessment cards - Positioned in upper empty space */
 .assess-card-1 {
     position: absolute;
-    left: 40%;
+    left: 35%;
     top: 5%;
-    width: 22%;
-    max-width: 400px;
-    min-height: 160px;
+    width: 18%;
+    max-width: 320px;
+    min-height: 130px;
     border-radius: 5px;
 }
 
-/* Arrow from card bottom to Assessment circle top */
-.assess-card-1::before {
-    content: '';
-    position: absolute;
-    left: 40%;
-    bottom: -10%;
-    width: 4px;
-    height: 10%;
-    background-image: repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
+/* No arrows */
+.assess-card-1::before,
 .assess-card-1::after {
-    content: '';
-    position: absolute;
-    left: calc(40% - 4px);
-    bottom: -14%;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #000;
+    display: none;
 }
 
 .assess-poster {
     position: absolute;
-    left: 64%;
+    left: 55%;
     top: 5%;
-    width: 22%;
-    max-width: 400px;
+    width: 18%;
+    max-width: 320px;
     border: none;
 }
 
 .assess-poster img {
     width: 100%;
-    max-width: 400px;
+    max-width: 320px;
     cursor: pointer;
     border: none;
     box-shadow: none;
 }
 
-.assess-poster::before {
-    display: none;
-}
-
+.assess-poster::before,
 .assess-poster::after {
     display: none;
 }
 
-/* Move assess-card-2 to the right */
+/* assess-card-2 positioned upper-left area */
 .assess-card-2 {
     position: absolute;
     left: 8%;
-    top: 35%;
-    width: 18%;
-    max-width: 320px;
-    min-height: 140px;
+    top: 25%;
+    width: 16%;
+    max-width: 280px;
+    min-height: 120px;
     border-radius: 5px;
 }
 
-/* Arrow from card right edge to Assessment circle left */
-.assess-card-2::before {
-    content: '';
-    position: absolute;
-    right: -10%;
-    top: 50%;
-    width: 10%;
-    height: 4px;
-    background-image: repeating-linear-gradient(to right, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
+/* No arrows */
+.assess-card-2::before,
 .assess-card-2::after {
-    content: '';
-    position: absolute;
-    right: -12%;
-    top: calc(50% - 4px);
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 10px solid #000;
+    display: none;
 }
 
-/* Curriculum cards - Fixed positions with anchor arrows */
-/* Circle center: (1232, 691), radius: 80 -> top at y=611, right edge at x=1312 */
+/* Curriculum cards - Positioned in upper empty space */
 .curriculum-card-1 {
     position: absolute;
-    left: 52%;
+    left: 58%;
     top: 5%;
-    width: 22%;
-    max-width: 400px;
-    min-height: 160px;
+    width: 18%;
+    max-width: 320px;
+    min-height: 130px;
     border-radius: 5px;
 }
 
-/* Arrow from card bottom to Curriculum circle top */
-.curriculum-card-1::before {
-    content: '';
-    position: absolute;
-    right: 25%;
-    bottom: -10%;
-    width: 4px;
-    height: 10%;
-    background-image: repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
+/* No arrows */
+.curriculum-card-1::before,
 .curriculum-card-1::after {
-    content: '';
-    position: absolute;
-    right: calc(25% - 4px);
-    bottom: -14%;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #000;
+    display: none;
 }
 
 .curriculum-card-2 {
     position: absolute;
-    right: 2%;
-    top: 22%;
+    left: 58%;
+    top: 28%;
     width: 18%;
     max-width: 320px;
-    min-height: 140px;
+    min-height: 120px;
     border-radius: 5px;
 }
 
-/* Arrow from card left edge to Curriculum circle right */
-.curriculum-card-2::before {
-    content: '';
-    position: absolute;
-    left: -10%;
-    top: 50%;
-    width: 10%;
-    height: 4px;
-    background-image: repeating-linear-gradient(to left, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
+/* No arrows */
+.curriculum-card-2::before,
 .curriculum-card-2::after {
-    content: '';
-    position: absolute;
-    left: -12%;
-    top: calc(50% - 4px);
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 10px solid #000;
+    display: none;
 }
 
-/* Review cards - Fixed positions with anchor arrows */
-/* Circle center: (1406, 918), radius: 80 -> top at y=838 */
+/* Review cards - Positioned in upper empty space */
 .review-card-1 {
     position: absolute;
-    right: 3%;
-    top: 8%;
-    width: 20%;
-    max-width: 360px;
-    min-height: 160px;
+    right: 2%;
+    top: 5%;
+    width: 16%;
+    max-width: 280px;
+    min-height: 120px;
     border-radius: 5px;
 }
 
-/* Arrow from card bottom to Review circle top */
-.review-card-1::before {
-    content: '';
-    position: absolute;
-    left: 35%;
-    bottom: -10%;
-    width: 4px;
-    height: 10%;
-    background-image: repeating-linear-gradient(to bottom, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
+/* No arrows */
+.review-card-1::before,
 .review-card-1::after {
-    content: '';
-    position: absolute;
-    left: calc(35% - 4px);
-    bottom: -14%;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #000;
+    display: none;
 }
 
 .review-card-2 {
     position: absolute;
     right: 2%;
-    top: 32%;
-    width: 18%;
-    max-width: 320px;
-    min-height: 140px;
+    top: 28%;
+    width: 16%;
+    max-width: 280px;
+    min-height: 120px;
     border-radius: 5px;
 }
 
-/* Arrow from card left edge to Review circle right */
-.review-card-2::before {
-    content: '';
-    position: absolute;
-    left: -10%;
-    top: 60%;
-    width: 10%;
-    height: 4px;
-    background-image: repeating-linear-gradient(to left, #000 0, #000 4px, transparent 4px, transparent 8px);
-}
-
+/* No arrows */
+.review-card-2::before,
 .review-card-2::after {
-    content: '';
-    position: absolute;
-    left: -12%;
-    top: calc(60% - 4px);
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 10px solid #000;
+    display: none;
 }
 
 /* Branch nodes - hidden, using SVG circles instead */
