@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhihui Zhang | 张淽卉</title>
+    <link rel="icon" href="public/icon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button id="langBtn" onclick="toggleLanguage()">
+            <span class="lang-zh">中文</span> | <span class="lang-en active">EN</span>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="public/icon.png" alt="icon" class="nav-icon">
+            <span class="nav-brand">Personal</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" data-zh="首页" data-en="Home">Home</a></li>
+            <li><a href="#education" data-zh="教育背景" data-en="Education">Education</a></li>
+            <li><a href="#research" data-zh="研究" data-en="Research">Research</a></li>
+            <li><a href="#projects" data-zh="项目" data-en="Projects">Projects</a></li>
+            <li><a href="#contact" data-zh="联系我" data-en="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Section 1: About Me / Home -->
+    <section id="home" class="section home-section">
+        <div class="home-bg-image">
+            <img src="public/home.GIF" alt="Background">
+        </div>
+        <div class="home-content">
+            <div class="home-text">
+                <h1 class="main-title">
+                    <span class="hello" data-zh="你好呀，我是" data-en="Hi, I'm">Hi, I'm</span>
+                    <span class="name"><strong data-zh="张淽卉" data-en="Zhihui Zhang">Zhihui Zhang</strong>.</span>
+                </h1>
+                <h2 class="subtitle" id="typewriter">
+                    <span class="subtitle-text" data-zh="香港中文大学 课程与教学系 在读博士生" data-en="PhD Candidate, CUHK Dept. of Curriculum & Instruction"></span>
+                </h2>
+                <p class="research-line">
+                    <span data-zh="探索<strong>生成式 AI</strong> 如何点燃语言学习者的创造力与动机。" data-en="Exploring how <strong>generative AI</strong> sparks creativity & motivation in language learners.">Exploring how <strong>generative AI</strong> sparks creativity & motivation in language learners.</span>
+                </p>
+                <a href="#research" class="cta-btn">
+                    <span data-zh="查看我的研究 →" data-en="View My Research →">View My Research →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Education -->
+    <section id="education" class="section education-section">
+        <div class="section-header">
+            <h2 data-zh="教育背景" data-en="Education">Education</h2>
+        </div>
+        <div class="map-container">
+            <img src="public/map.png" alt="World Map" class="world-map">
+            
+            <!-- Spain Card - 2014 (appears first) -->
+            <div class="edu-card spain-card" data-delay="0">
+                <div class="edu-card-inner">
+                    <span class="flag">🇪🇸</span>
+                    <span class="school">Universidad de Salamanca</span>
+                    <span class="degree">BA (2014)</span>
+                </div>
+                <div class="edu-line spain-line"></div>
+            </div>
+            
+            <!-- USA Card - 2018 (appears second) -->
+            <div class="edu-card usa-card" data-delay="1">
+                <div class="edu-card-inner">
+                    <span class="flag">🇺🇸</span>
+                    <span class="school">University of Southern California</span>
+                    <span class="degree">MA (2018)</span>
+                </div>
+                <div class="edu-line usa-line"></div>
+            </div>
+            
+            <!-- Hong Kong Card - 2024 (appears third) -->
+            <div class="edu-card hk-card" data-delay="2">
+                <div class="edu-card-inner">
+                    <span class="flag">🇭🇰</span>
+                    <span class="school">The Chinese University of Hong Kong</span>
+                    <span class="degree">PhD (2024)</span>
+                </div>
+                <div class="edu-line hk-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Research -->
+    <section id="research" class="section research-section">
+        <div class="research-mindmap">
+            <!-- Paper cards container -->
+            <div class="paper-cards-container">
+                <!-- Vocabulary papers (positioned left of Vocabulary node) -->
+                <div class="paper-group" id="papers-1">
+                    <div class="paper-card vocab-card-1">
+                        <h4>The impact of chatbots based on large language models on second language vocabulary acquisition.</h4>
+                        <p class="journal">Heliyon</p>
+                        <p class="conference">American Educational Research Association (AERA) Annual Meeting | 2024 (Division C Award)</p>
+                        <a href="public/research/research1.pdf" download class="download-btn">
+                            <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
+                            <span>download</span>
+                        </a>
+                    </div>
+                    <div class="paper-poster vocab-poster">
+                        <img src="public/research/research1.png" alt="Poster" onclick="openLightbox('public/research/research1.png')">
+                    </div>
+                </div>
+                
+                <!-- Writing papers (positioned upper-left of Writing node) -->
+                <div class="paper-group" id="papers-2">
+                    <div class="paper-card writing-card-1">
+                        <h4>Co-Authoring with GenAI: Negotiation Processes in Middle-School EFL Creative Writing.</h4>
+                        <p class="status">Under Review</p>
+                    </div>
+                    <div class="paper-card writing-card-2">
+                        <h4>The role of generative AI and hybrid feedback in improving L2 writing skills: A comparative study</h4>
+                        <p class="journal">Innovation in Language Learning and Teaching</p>
+                        <p class="conference">British Educational Research Association (BERA) Annual Conference | 2025</p>
+                        <a href="public/research/research2.pdf" download class="download-btn">
+                            <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
+                            <span>download</span>
+                        </a>
+                    </div>
+                    <div class="paper-poster writing-poster">
+                        <img src="public/research/research2.png" alt="Poster" onclick="openLightbox('public/research/research2.png')">
+                    </div>
+                </div>
+                
+                <!-- Assessment papers -->
+                <div class="paper-group" id="papers-3">
+                    <div class="paper-card assess-card-1">
+                        <h4>EFL learners' motivation in a gamified formative assessment: The case of Quizizz.</h4>
+                        <p class="journal">Education and Information Technologies</p>
+                        <a href="public/research/research3.pdf" download class="download-btn">
+                            <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
+                            <span>download</span>
+                        </a>
+                    </div>
+                    <div class="paper-card assess-poster" onclick="openLightbox('public/research/research3.png')">
+                        <img src="public/research/research3.png" alt="Research 3 Poster">
+                    </div>
+                    <div class="paper-card assess-card-2">
+                        <h4>How Do Language and Science Students Respond to Emotional Designs In AI-Based Chatbot Feedback from a Self-Determination Theory</h4>
+                        <p class="status">Under Review</p>
+                    </div>
+                </div>
+                
+                <!-- Curriculum papers -->
+                <div class="paper-group" id="papers-4">
+                    <div class="paper-card curriculum-card-1">
+                        <h4>Comparing the Impact of Synchronous and Asynchronous Generative AI-Assisted Learning in K-12 Education</h4>
+                        <p class="status">Under Review</p>
+                    </div>
+                    <div class="paper-card curriculum-card-2">
+                        <h4>How does Learner Prior Language Knowledge Play in GenAI-Assisted Project-Based Learning for Creativity?</h4>
+                        <p class="status">Under Review</p>
+                    </div>
+                </div>
+                
+                <!-- Review papers -->
+                <div class="paper-group" id="papers-5">
+                    <div class="paper-card review-card-1">
+                        <h4>Does Generative Artificial Intelligence (GenAI) Boost Language Skills? Evidence from a Meta-analysis</h4>
+                        <p class="status">Under Review</p>
+                    </div>
+                    <div class="paper-card review-card-2">
+                        <h4>Artificial Intelligence in Education: A Systematic Review and Meta-Analysis of Differential Effects on Lower- and Higher-Order Thinking Skills.</h4>
+                        <p class="status">Under Review</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SVG Mindmap - Cropped viewBox to reduce whitespace -->
+            <svg class="mindmap-svg" viewBox="0 500 1920 580" preserveAspectRatio="xMidYMax meet">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+                        <polygon points="0 0, 10 4, 0 8" fill="#000000"/>
+                    </marker>
+                </defs>
+                
+                <!-- 1. Solid 180° upper semicircle: diameter=640px, radius=320, center (960,1080) -->
+                <path d="M 640 1080 A 320 320 0 0 1 1280 1080 Z" fill="#000000"/>
+                
+                <!-- 2. Dashed outline semicircle: diameter=660px, radius=330, center (960,1080), stroke 4px -->
+                <path d="M 630 1080 A 330 330 0 0 1 1290 1080" fill="none" stroke="#000000" stroke-width="4" stroke-dasharray="8,4"/>
+                
+                <!-- Center text inside arc -->
+                <text x="960" y="920" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="48">AI in Education</text>
+                <text x="960" y="980" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="48">Research</text>
+                
+                <!-- 5 Function circles on diameter 950px semicircle (radius 475 from center 960,1080) -->
+                <!-- Circle radius = 80, unified font size 26px -->
+                
+                <!-- Vocabulary: angle 160° -> x=514, y=918 -->
+                <circle class="svg-node" id="node-vocab" cx="514" cy="918" r="80" fill="#000000" onclick="toggleBranch(1)" style="cursor:pointer"/>
+                <text x="514" y="926" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Vocabulary</text>
+                
+                <!-- Writing: angle 125° -> x=688, y=691 -->
+                <circle class="svg-node" id="node-writing" cx="688" cy="691" r="80" fill="#000000" onclick="toggleBranch(2)" style="cursor:pointer"/>
+                <text x="688" y="699" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Writing</text>
+                
+                <!-- Assessment & Motivation: angle 90° -> x=960, y=605 -->
+                <circle class="svg-node" id="node-assess" cx="960" cy="605" r="80" fill="#000000" onclick="toggleBranch(3)" style="cursor:pointer"/>
+                <text x="960" y="597" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">Assessment</text>
+                <text x="960" y="621" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">& Motivation</text>
+                
+                <!-- Curriculum Design: angle 55° -> x=1232, y=691 -->
+                <circle class="svg-node" id="node-curric" cx="1232" cy="691" r="80" fill="#000000" onclick="toggleBranch(4)" style="cursor:pointer"/>
+                <text x="1232" y="683" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">Curriculum</text>
+                <text x="1232" y="707" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="20">Design</text>
+                
+                <!-- Review: angle 20° -> x=1406, y=918 -->
+                <circle class="svg-node" id="node-review" cx="1406" cy="918" r="80" fill="#000000" onclick="toggleBranch(5)" style="cursor:pointer"/>
+                <text x="1406" y="926" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Review</text>
+                
+                <!-- 4px dashed arrows FROM dashed arc edge (radius 330) TO circle bottom -->
+                <!-- Arrow from dashed arc point to Vocabulary circle bottom (514, 998) -->
+                <line x1="700" y1="970" x2="580" y2="990" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
+                <!-- Arrow from dashed arc to Writing circle bottom (688, 771) -->
+                <line x1="780" y1="800" x2="720" y2="765" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
+                <!-- Arrow from dashed arc to Assessment circle bottom (960, 685) -->
+                <line x1="960" y1="750" x2="960" y2="683" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
+                <!-- Arrow from dashed arc to Curriculum circle bottom (1232, 771) -->
+                <line x1="1140" y1="800" x2="1200" y2="765" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
+                <!-- Arrow from dashed arc to Review circle bottom (1406, 998) -->
+                <line x1="1220" y1="970" x2="1340" y2="990" stroke="#000000" stroke-width="4" stroke-dasharray="8,4" marker-end="url(#arrowhead)"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Lightbox for Posters -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Poster">
+    </div>
+
+    <!-- Section 4: Projects -->
+    <section id="projects" class="section projects-section">
+        <div class="section-header">
+            <h2 data-zh="项目" data-en="My Projects">My Projects</h2>
+        </div>
+        <div class="projects-list">
+            <!-- Project 1: Demo Left, Text Right -->
+            <div class="project-item">
+                <div class="project-demo">
+                    <img src="public/project/project1.GIF" alt="GenAI Postcard">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">01</div>
+                    <h3 data-zh="基于自我决定理论的生成式AI明信片对话系统" data-en="GenAI-Powered Postcard Dialogue System">GenAI-Powered Postcard Dialogue System</h3>
+                    <p data-zh="基于自我决定理论的生成式AI明信片对话系统，支持个性化语言学习反馈，提升学习者内在动机。" data-en="A GenAI-powered postcard dialogue system grounded in Self-Determination Theory, providing personalized language-learning feedback to enhance intrinsic motivation">A GenAI-powered postcard dialogue system grounded in Self-Determination Theory, providing personalized language-learning feedback to enhance intrinsic motivation</p>
+                    <div class="project-awards-text">
+                        <p>📜 Software Invention Patent No. 2025R11L2331073</p>
+                    </div>
+                    <a href="https://picecho.top" target="_blank" class="project-link">
+                        <img src="public/project/website.png" alt="website" onerror="this.outerHTML='<span class=\'link-icon\'>🌐</span>'">
+                        <span data-zh="访问项目" data-en="visit the project">visit the project</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Text Left, Demo Right -->
+            <div class="project-item reverse">
+                <div class="project-demo">
+                    <img src="public/project/project2.GIF" alt="Gamified Vocabulary">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">02</div>
+                    <h3 data-zh="游戏化词汇测试系统" data-en="Gamified Vocabulary Testing System">Gamified Vocabulary Testing System</h3>
+                    <p data-zh="基于认知理论的游戏化词汇测试系统，实时适配学习者水平，提升评估效率与趣味性。" data-en="A gamified vocabulary testing system based on cognitive theory, dynamically adapting to learners' levels for efficient and engaging assessment.">A gamified vocabulary testing system based on cognitive theory, dynamically adapting to learners' levels for efficient and engaging assessment.</p>
+                    <div class="project-awards-text">
+                        <p>📜 Patent Invention No. 2022120701917470</p>
+                        <p>🏆 Baidu AI Vibe Coding Best Communication Award | 2025</p>
+                    </div>
+                    <a href="https://www.miaoda.cn/apps/app-6nwcjdhgv20x?s=s" target="_blank" class="project-link">
+                        <img src="public/project/website.png" alt="website" onerror="this.outerHTML='<span class=\'link-icon\'>🌐</span>'">
+                        <span data-zh="访问项目" data-en="visit the project">visit the project</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 (NEW): Demo Left, Text Right -->
+            <div class="project-item">
+                <div class="project-demo">
+                    <img src="public/project/project3.gif" alt="IELTS Writing">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">03</div>
+                    <h3 data-zh="AI 智能雅思写作批改与学习规划系统" data-en="AI-Powered IELTS Writing Evaluation and Learning Planner">AI-Powered IELTS Writing Evaluation and Learning Planner</h3>
+                    <p data-zh="本项目基于 AI 技术，为雅思写作提供多维度精准批改，涵盖评分标准各模块与可执行的修改建议，并支持在批改反馈中实时答疑、对照修改写作内容，同时生成个性化写作总结规划与阶段性复盘，帮助考生高效提升写作能力。" data-en="This project leverages AI to deliver detailed, criterion-based IELTS writing feedback with actionable revisions, supports real-time Q&A aligned with feedback and side-by-side online editing, and provides personalized writing summaries and study plans to enable systematic improvement in IELTS writing performance.">This project leverages AI to deliver detailed, criterion-based IELTS writing feedback with actionable revisions, supports real-time Q&A aligned with feedback and side-by-side online editing, and provides personalized writing summaries and study plans to enable systematic improvement in IELTS writing performance.</p>
+                    <a href="http://www.test-writing.top/" target="_blank" class="project-link">
+                        <img src="public/project/website.png" alt="website" onerror="this.outerHTML='<span class=\'link-icon\'>🌐</span>'">
+                        <span data-zh="访问项目" data-en="visit the project">visit the project</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 4: Text Left, Demo Right -->
+            <div class="project-item reverse">
+                <div class="project-demo">
+                    <img src="public/project/project4.gif" alt="AutoWorksheet">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">04</div>
+                    <h3 data-zh="教师生成游戏化练习纸 AutoWorksheet" data-en="AutoWorksheet: Gamified Printables in One Click">AutoWorksheet: Gamified Printables in One Click</h3>
+                    <p data-zh="一键输入听力或文本，即刻生成 Bingo、大富翁、闪卡等游戏化练习纸，让备课零门槛。" data-en="Upload any audio/text, instantly generate bingo, board-game or flash-card worksheets—gamified prep in one click.">Upload any audio/text, instantly generate bingo, board-game or flash-card worksheets—gamified prep in one click.</p>
+                    <div class="project-awards-text">
+                        <p>🏆 RedBook AI Vibe Coding Best Developer Award | 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Demo Left, Text Right -->
+            <div class="project-item">
+                <div class="project-demo">
+                    <img src="public/project/project5.gif" alt="BookTail">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">05</div>
+                    <h3 data-zh="AI 宠物阅读陪伴 BookTail" data-en="BookTail – AI Pet Reading Companion">BookTail – AI Pet Reading Companion</h3>
+                    <p data-zh="AI 化身萌宠陪伴小学生阅读，阅读质量越高，宠物成长越快，功能解锁越多。" data-en="An AI pet that grows and unlocks features as elementary students read better—turning reading progress into pet care fun.">An AI pet that grows and unlocks features as elementary students read better—turning reading progress into pet care fun.</p>
+                    <div class="project-awards-text">
+                        <p>🏆 TAL AI Vibe Coding Best Creativity Award | 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: Text Left, Demo Right -->
+            <div class="project-item reverse">
+                <div class="project-demo gallery">
+                    <img src="public/project/project6_1.png" alt="3D Word Display 1">
+                    <img src="public/project/project6_2.png" alt="3D Word Display 2">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">06</div>
+                    <h3 data-zh="3D词汇记忆展示产品" data-en="3D Word Memorization Display Product">3D Word Memorization Display Product</h3>
+                    <p data-zh="3D词汇记忆展示产品，通过空间联想与视觉化增强记忆效果。" data-en="A 3D word memorization display product that enhances memory retention through spatial association and visualization.">A 3D word memorization display product that enhances memory retention through spatial association and visualization.</p>
+                    <div class="project-awards-text">
+                        <p>📜 Patent Invention No. 202111409594.8</p>
+                        <p>🏆 NYBPC: 2nd Place NY District & Best Female Entrepreneurship Award | 2020</p>
+                        <p>🏆 Pride Pitch Canada Finals: 1st Place | 2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5 & 6: Contact & Others -->
+    <section id="contact" class="section contact-section">
+        <div class="contact-container">
+            <!-- Contact Me - Left -->
+            <div class="contact-left">
+                <div class="contact-photo-wrapper">
+                    <img src="public/other/self.gif" alt="Zhihui Zhang" class="contact-photo" onerror="this.src='public/home.GIF'">
+                    <div class="photo-heart">♥</div>
+                    <div class="photo-dot"></div>
+                </div>
+                <h2 data-zh="联系我" data-en="CONTACT">CONTACT</h2>
+                <h3 class="contact-subtitle" data-zh="我" data-en="ME">ME</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <img src="public/other/tel.png" alt="phone" class="contact-icon-img">
+                        <span>+856 60905092</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="public/other/email.png" alt="email" class="contact-icon-img">
+                        <a href="mailto:zhihuiz@link.cuhk.edu.hk">zhihuiz@link.cuhk.edu.hk</a>
+                    </div>
+                    <div class="contact-item">
+                        <img src="public/other/work.png" alt="linkedin" class="contact-icon-img">
+                        <a href="https://linkedin.com/in/zhihui-zhang-077824183" target="_blank">linkedin.com/in/zhihui-zhang-077824183</a>
+                    </div>
+                </div>
+                <p class="social-handle">@sirazhang</p>
+            </div>
+
+            <!-- Others - Right -->
+            <div class="contact-right">
+                <h2 data-zh="其他" data-en="OTHERS">OTHERS</h2>
+                
+                <div class="others-grid">
+                    <div class="others-card">
+                        <img src="public/other/icon1.png" alt="Honor" class="others-icon-direct">
+                        <p>DUOLINGO<br>RESEARCH GRANT<br>2025</p>
+                    </div>
+                    
+                    <div class="others-card">
+                        <img src="public/other/icon1.png" alt="Scholarship" class="others-icon-direct">
+                        <p>VICE-CHANCELLOR'S<br>SCHOLARSHIP, CUHK<br>2024</p>
+                    </div>
+                    
+                    <div class="others-card">
+                        <img src="public/other/icon2.png" alt="Languages" class="others-icon-direct">
+                        <p data-zh="普通话 · 英语<br>· 西班牙语 · 法语" data-en="MANDARIN · ENGLISH<br>· SPANISH · FRENCH">MANDARIN · ENGLISH<br>· SPANISH · FRENCH</p>
+                    </div>
+                    
+                    <div class="others-card skills-card" onclick="toggleSkillsColor(this)">
+                        <img src="public/other/icon3.png" alt="Skills" class="others-icon-direct">
+                        <p>SQL, PYTHON, SPSS, FRONT-END<br>DEVELOPMENT<br>(HTML/CSS/JAVASCRIPT)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative elements -->
+        <div class="contact-decor-topleft"></div>
+        <div class="contact-decor-bottomright"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Zhihui Zhang. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
