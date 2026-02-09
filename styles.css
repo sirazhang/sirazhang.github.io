@@ -110,6 +110,13 @@ body {
     color: var(--accent-red);
 }
 
+.nav-links a.active {
+    color: var(--accent-red);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+}
+
 /* Section Base Styles */
 .section {
     min-height: auto;
@@ -275,7 +282,7 @@ body {
 
 .education-section .section-header {
     padding: 0 80px;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 .education-section .section-header h2 {
@@ -288,11 +295,15 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    margin-bottom: 0;
+    line-height: 0;
 }
 
 .world-map {
     width: 100%;
     opacity: 1;
+    display: block;
+    vertical-align: bottom;
 }
 
 .edu-card {
@@ -329,15 +340,16 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 18px 25px;
+    padding: 20px 28px;
     border-radius: 8px;
-    min-width: 200px;
+    min-width: 220px;
     color: #fff;
+    gap: 6px;
 }
 
 .usa-card {
-    left: 8%;
-    top: 42%;
+    left: 2%;
+    top: 40%;
 }
 
 .usa-card .edu-card-inner {
@@ -346,7 +358,7 @@ body {
 
 .spain-card {
     left: 42%;
-    top: 55%;
+    top: 50%;
 }
 
 .spain-card .edu-card-inner {
@@ -355,7 +367,7 @@ body {
 
 .hk-card {
     right: 5%;
-    top: 32%;
+    top: 28%;
 }
 
 .hk-card .edu-card-inner {
@@ -363,48 +375,78 @@ body {
 }
 
 .edu-card .flag {
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 20px;
+    margin-bottom: 0;
 }
 
 .edu-card .school {
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 3px;
+    margin-bottom: 0;
+    line-height: 1.3;
 }
 
 .edu-card .degree {
     font-size: 14px;
     opacity: 0.9;
+    margin-top: 2px;
 }
 
 .edu-line {
+    display: none;
+}
+
+/* Location markers with pulsing effect */
+.location-marker {
     position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ff0000;
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.location-marker::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
     background: #fff;
 }
 
-.usa-line {
-    right: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 2px;
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
 }
 
-.spain-line {
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 40px;
-    width: 2px;
+/* Position markers - relative to map container */
+.usa-marker {
+    left: 10%;
+    top: 32%;
 }
 
-.hk-line {
-    left: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 2px;
+.spain-marker {
+    left: 43%;
+    top: 35%;
+}
+
+.hk-marker {
+    right: 18%;
+    top: 42%;
 }
 
 /* Research Section */
@@ -412,71 +454,98 @@ body {
     background: var(--bg-light);
     position: relative;
     min-height: auto;
-    padding: 10px 0 0 0;
+    padding: 40px 0 60px 0;
     overflow: visible;
 }
 
+.research-section .section-header {
+    margin-bottom: 20px;
+    padding-left: 30px;
+}
+
 .research-mindmap {
+    display: flex;
+    gap: 0;
+    max-width: 100%;
+    margin: 0;
+    align-items: center;
     position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 50%; /* Increased to give more space for cards above mindmap */
-    max-width: 1920px;
-    margin: 0 auto;
 }
 
-/* SVG Mindmap */
-.mindmap-svg {
+/* Left side - Paper display area */
+.paper-display-area {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-/* Paper cards container */
-.paper-cards-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 15;
+    left: 150px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35%;
+    max-width: 500px;
+    z-index: 10;
 }
 
 .paper-group {
     display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .paper-group.active {
     display: block;
+    opacity: 1;
+    animation: fadeIn 0.3s ease;
 }
 
-.paper-group.active .paper-card,
-.paper-group.active .paper-poster {
-    pointer-events: auto;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Right side - Mindmap circles */
+.mindmap-circles {
+    width: 100%;
+    position: relative;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 50px;
+    margin-right: 0;
+}
+
+/* SVG Mindmap */
+.mindmap-svg {
+    width: auto;
+    max-width: none;
+    height: 700px;
+    z-index: 1;
+    margin-right: 0;
+}
+
+/* Paper cards container - no longer absolute */
+.paper-cards-container {
+    width: 100%;
+    height: 100%;
 }
 
 .paper-card {
-    position: absolute;
+    position: relative;
     background: #f5f5f0;
     border: 2px solid var(--text-dark);
-    border-radius: 15px;
-    padding: 20px 25px;
-    max-width: 350px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    max-width: 100%;
 }
 
 .paper-card h4 {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1.5;
     margin-bottom: 10px;
@@ -484,21 +553,21 @@ body {
 }
 
 .paper-card .journal {
-    font-size: 13px;
+    font-size: 12px;
     font-style: italic;
     color: var(--text-gray);
     margin-bottom: 5px;
 }
 
 .paper-card .conference {
-    font-size: 12px;
+    font-size: 11px;
     font-style: italic;
     color: var(--text-gray);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .paper-card .status {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-gray);
     font-style: italic;
 }
@@ -506,29 +575,36 @@ body {
 .paper-card .download-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     color: var(--text-dark);
     text-decoration: none;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 12px;
     margin-top: 10px;
+    transition: var(--transition);
+}
+
+.paper-card .download-btn:hover {
+    color: var(--accent-red);
 }
 
 .paper-card .download-btn img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 .paper-poster {
-    position: absolute;
+    position: relative;
     border: none !important;
+    margin-bottom: 18px;
 }
 
 .paper-poster img {
-    width: 280px;
+    width: 100%;
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
     border: none;
     cursor: pointer;
     transition: var(--transition);
@@ -536,211 +612,53 @@ body {
 
 .paper-poster img:hover {
     transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
 }
 
-/* Vocabulary cards - Positioned in upper empty space */
-.vocab-card-1 {
-    position: absolute;
-    left: 1%;
-    top: 5%;
-    width: 18%;
-    max-width: 320px;
-    min-height: 150px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.vocab-card-1::before,
-.vocab-card-1::after {
-    display: none;
-}
-
-.vocab-poster {
-    position: absolute;
-    left: 20%;
-    top: 5%;
-    width: 18%;
-    max-width: 320px;
-}
-
-.vocab-poster img {
-    width: 100%;
-    max-width: 320px;
-}
-
-.vocab-poster::before,
-.vocab-poster::after {
-    display: none;
-}
-
-/* Writing cards - Positioned in upper empty space */
-.writing-card-1 {
-    position: absolute;
-    left: 1%;
-    top: 25%;
-    width: 16%;
-    max-width: 280px;
-    min-height: 120px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.writing-card-1::before,
-.writing-card-1::after {
-    display: none;
-}
-
-.writing-card-2 {
-    position: absolute;
-    left: 18%;
-    top: 5%;
-    width: 20%;
-    max-width: 360px;
-    min-height: 150px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.writing-card-2::before,
-.writing-card-2::after {
-    display: none;
-}
-
-.writing-poster {
-    position: absolute;
-    left: 40%;
-    top: 5%;
-    width: 20%;
-    max-width: 360px;
-}
-
-.writing-poster img {
-    width: 100%;
-    max-width: 360px;
-}
-
-.writing-poster::before,
-.writing-poster::after {
-    display: none;
-}
-
-/* Assessment cards - Positioned in upper empty space */
-.assess-card-1 {
-    position: absolute;
-    left: 35%;
-    top: 5%;
-    width: 18%;
-    max-width: 320px;
-    min-height: 130px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.assess-card-1::before,
-.assess-card-1::after {
-    display: none;
-}
-
-.assess-poster {
-    position: absolute;
-    left: 55%;
-    top: 5%;
-    width: 18%;
-    max-width: 320px;
-    border: none;
-}
-
-.assess-poster img {
-    width: 100%;
-    max-width: 320px;
-    cursor: pointer;
-    border: none;
-    box-shadow: none;
-}
-
-.assess-poster::before,
-.assess-poster::after {
-    display: none;
-}
-
-/* assess-card-2 positioned upper-left area */
-.assess-card-2 {
-    position: absolute;
-    left: 8%;
-    top: 25%;
-    width: 16%;
-    max-width: 280px;
-    min-height: 120px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.assess-card-2::before,
-.assess-card-2::after {
-    display: none;
-}
-
-/* Curriculum cards - Positioned in upper empty space */
-.curriculum-card-1 {
-    position: absolute;
-    left: 58%;
-    top: 5%;
-    width: 18%;
-    max-width: 320px;
-    min-height: 130px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.curriculum-card-1::before,
-.curriculum-card-1::after {
-    display: none;
-}
-
-.curriculum-card-2 {
-    position: absolute;
-    left: 58%;
-    top: 28%;
-    width: 18%;
-    max-width: 320px;
-    min-height: 120px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.curriculum-card-2::before,
-.curriculum-card-2::after {
-    display: none;
-}
-
-/* Review cards - Positioned in upper empty space */
-.review-card-1 {
-    position: absolute;
-    right: 2%;
-    top: 5%;
-    width: 16%;
-    max-width: 280px;
-    min-height: 120px;
-    border-radius: 5px;
-}
-
-/* No arrows */
-.review-card-1::before,
-.review-card-1::after {
-    display: none;
-}
-
+/* Remove all absolute positioning for paper cards */
+.vocab-card-1,
+.vocab-poster,
+.writing-card-1,
+.writing-card-2,
+.writing-poster,
+.assess-card-1,
+.assess-poster,
+.assess-card-2,
+.curriculum-card-1,
+.curriculum-card-2,
+.review-card-1,
 .review-card-2 {
-    position: absolute;
-    right: 2%;
-    top: 28%;
-    width: 16%;
-    max-width: 280px;
-    min-height: 120px;
-    border-radius: 5px;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    max-width: 100%;
 }
 
-/* No arrows */
+/* Remove all arrow styles */
+.vocab-card-1::before,
+.vocab-card-1::after,
+.vocab-poster::before,
+.vocab-poster::after,
+.writing-card-1::before,
+.writing-card-1::after,
+.writing-card-2::before,
+.writing-card-2::after,
+.writing-poster::before,
+.writing-poster::after,
+.assess-card-1::before,
+.assess-card-1::after,
+.assess-poster::before,
+.assess-poster::after,
+.assess-card-2::before,
+.assess-card-2::after,
+.curriculum-card-1::before,
+.curriculum-card-1::after,
+.curriculum-card-2::before,
+.curriculum-card-2::after,
+.review-card-1::before,
+.review-card-1::after,
 .review-card-2::before,
 .review-card-2::after {
     display: none;
@@ -753,7 +671,8 @@ body {
 
 /* SVG node hover/active states */
 .svg-node {
-    transition: fill 0.3s;
+    transition: all 0.5s ease;
+    transform-origin: center;
 }
 
 .svg-node:hover {

@@ -63,6 +63,11 @@
         <div class="map-container">
             <img src="public/map.png" alt="World Map" class="world-map">
             
+            <!-- Location markers on map -->
+            <div class="location-marker usa-marker"></div>
+            <div class="location-marker spain-marker"></div>
+            <div class="location-marker hk-marker"></div>
+            
             <!-- Spain Card - 2014 (appears first) -->
             <div class="edu-card spain-card" data-delay="0">
                 <div class="edu-card-inner">
@@ -97,134 +102,151 @@
 
     <!-- Section 3: Research -->
     <section id="research" class="section research-section">
+        <div class="section-header">
+            <h2 data-zh="研究" data-en="Research">Research</h2>
+        </div>
         <div class="research-mindmap">
-            <!-- Paper cards container -->
-            <div class="paper-cards-container">
-                <!-- Vocabulary papers (positioned left of Vocabulary node) -->
-                <div class="paper-group" id="papers-1">
-                    <div class="paper-card vocab-card-1">
-                        <h4>The impact of chatbots based on large language models on second language vocabulary acquisition.</h4>
-                        <p class="journal">Heliyon</p>
-                        <p class="conference">American Educational Research Association (AERA) Annual Meeting | 2024 (Division C Award)</p>
-                        <a href="public/research/research1.pdf" download class="download-btn">
-                            <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
-                            <span>download</span>
-                        </a>
+            <!-- Left side - Paper display area -->
+            <div class="paper-display-area">
+                <div class="paper-cards-container">
+                    <!-- Vocabulary papers -->
+                    <div class="paper-group" id="papers-1">
+                        <div class="paper-card vocab-card-1">
+                            <h4>The impact of chatbots based on large language models on second language vocabulary acquisition.</h4>
+                            <p class="journal">Heliyon</p>
+                            <p class="conference">American Educational Research Association (AERA) Annual Meeting | 2024 (Division C Award)</p>
+                            <a href="public/research/research1.pdf" download class="download-btn">
+                                <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
+                                <span>download</span>
+                            </a>
+                        </div>
+                        <div class="paper-poster vocab-poster">
+                            <img src="public/research/research1.png" alt="Poster" onclick="openLightbox('public/research/research1.png')">
+                        </div>
                     </div>
-                    <div class="paper-poster vocab-poster">
-                        <img src="public/research/research1.png" alt="Poster" onclick="openLightbox('public/research/research1.png')">
+                    
+                    <!-- Writing papers -->
+                    <div class="paper-group" id="papers-2">
+                        <div class="paper-card writing-card-1">
+                            <h4>Co-Authoring with GenAI: Negotiation Processes in Middle-School EFL Creative Writing.</h4>
+                            <p class="status">Under Review</p>
+                        </div>
+                        <div class="paper-card writing-card-2">
+                            <h4>The role of generative AI and hybrid feedback in improving L2 writing skills: A comparative study</h4>
+                            <p class="journal">Innovation in Language Learning and Teaching</p>
+                            <p class="conference">British Educational Research Association (BERA) Annual Conference | 2025</p>
+                            <a href="public/research/research2.pdf" download class="download-btn">
+                                <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
+                                <span>download</span>
+                            </a>
+                        </div>
+                        <div class="paper-poster writing-poster">
+                            <img src="public/research/research2.png" alt="Poster" onclick="openLightbox('public/research/research2.png')">
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Writing papers (positioned upper-left of Writing node) -->
-                <div class="paper-group" id="papers-2">
-                    <div class="paper-card writing-card-1">
-                        <h4>Co-Authoring with GenAI: Negotiation Processes in Middle-School EFL Creative Writing.</h4>
-                        <p class="status">Under Review</p>
+                    
+                    <!-- Assessment papers -->
+                    <div class="paper-group" id="papers-3">
+                        <div class="paper-card assess-card-1">
+                            <h4>EFL learners' motivation in a gamified formative assessment: The case of Quizizz.</h4>
+                            <p class="journal">Education and Information Technologies</p>
+                            <a href="public/research/research3.pdf" download class="download-btn">
+                                <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
+                                <span>download</span>
+                            </a>
+                        </div>
+                        <div class="paper-poster assess-poster">
+                            <img src="public/research/research3.png" alt="Research 3 Poster" onclick="openLightbox('public/research/research3.png')">
+                        </div>
+                        <div class="paper-card assess-card-2">
+                            <h4>How Do Language and Science Students Respond to Emotional Designs In AI-Based Chatbot Feedback from a Self-Determination Theory</h4>
+                            <p class="status">Under Review</p>
+                        </div>
                     </div>
-                    <div class="paper-card writing-card-2">
-                        <h4>The role of generative AI and hybrid feedback in improving L2 writing skills: A comparative study</h4>
-                        <p class="journal">Innovation in Language Learning and Teaching</p>
-                        <p class="conference">British Educational Research Association (BERA) Annual Conference | 2025</p>
-                        <a href="public/research/research2.pdf" download class="download-btn">
-                            <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
-                            <span>download</span>
-                        </a>
+                    
+                    <!-- Curriculum papers -->
+                    <div class="paper-group" id="papers-4">
+                        <div class="paper-card curriculum-card-1">
+                            <h4>Comparing the Impact of Synchronous and Asynchronous Generative AI-Assisted Learning in K-12 Education</h4>
+                            <p class="status">Under Review</p>
+                        </div>
+                        <div class="paper-card curriculum-card-2">
+                            <h4>How does Learner Prior Language Knowledge Play in GenAI-Assisted Project-Based Learning for Creativity?</h4>
+                            <p class="status">Under Review</p>
+                        </div>
                     </div>
-                    <div class="paper-poster writing-poster">
-                        <img src="public/research/research2.png" alt="Poster" onclick="openLightbox('public/research/research2.png')">
-                    </div>
-                </div>
-                
-                <!-- Assessment papers -->
-                <div class="paper-group" id="papers-3">
-                    <div class="paper-card assess-card-1">
-                        <h4>EFL learners' motivation in a gamified formative assessment: The case of Quizizz.</h4>
-                        <p class="journal">Education and Information Technologies</p>
-                        <a href="public/research/research3.pdf" download class="download-btn">
-                            <img src="public/research/download.png" alt="download" onerror="this.outerHTML='⬇'">
-                            <span>download</span>
-                        </a>
-                    </div>
-                    <div class="paper-card assess-poster" onclick="openLightbox('public/research/research3.png')">
-                        <img src="public/research/research3.png" alt="Research 3 Poster">
-                    </div>
-                    <div class="paper-card assess-card-2">
-                        <h4>How Do Language and Science Students Respond to Emotional Designs In AI-Based Chatbot Feedback from a Self-Determination Theory</h4>
-                        <p class="status">Under Review</p>
-                    </div>
-                </div>
-                
-                <!-- Curriculum papers -->
-                <div class="paper-group" id="papers-4">
-                    <div class="paper-card curriculum-card-1">
-                        <h4>Comparing the Impact of Synchronous and Asynchronous Generative AI-Assisted Learning in K-12 Education</h4>
-                        <p class="status">Under Review</p>
-                    </div>
-                    <div class="paper-card curriculum-card-2">
-                        <h4>How does Learner Prior Language Knowledge Play in GenAI-Assisted Project-Based Learning for Creativity?</h4>
-                        <p class="status">Under Review</p>
-                    </div>
-                </div>
-                
-                <!-- Review papers -->
-                <div class="paper-group" id="papers-5">
-                    <div class="paper-card review-card-1">
-                        <h4>Does Generative Artificial Intelligence (GenAI) Boost Language Skills? Evidence from a Meta-analysis</h4>
-                        <p class="status">Under Review</p>
-                    </div>
-                    <div class="paper-card review-card-2">
-                        <h4>Artificial Intelligence in Education: A Systematic Review and Meta-Analysis of Differential Effects on Lower- and Higher-Order Thinking Skills.</h4>
-                        <p class="status">Under Review</p>
+                    
+                    <!-- Review papers -->
+                    <div class="paper-group" id="papers-5">
+                        <div class="paper-card review-card-1">
+                            <h4>Does Generative Artificial Intelligence (GenAI) Boost Language Skills? Evidence from a Meta-analysis</h4>
+                            <p class="status">Under Review</p>
+                        </div>
+                        <div class="paper-card review-card-2">
+                            <h4>Artificial Intelligence in Education: A Systematic Review and Meta-Analysis of Differential Effects on Lower- and Higher-Order Thinking Skills.</h4>
+                            <p class="status">Under Review</p>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- SVG Mindmap - Full viewBox for cards and mindmap -->
-            <svg class="mindmap-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMax meet">
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
-                        <polygon points="0 0, 10 4, 0 8" fill="#000000"/>
-                    </marker>
-                </defs>
-                
-                <!-- 1. Solid 180° upper semicircle: diameter=710px, radius=355, center (960,1080) -->
-                <path d="M 605 1080 A 355 355 0 0 1 1315 1080 Z" fill="#000000"/>
-                
-                <!-- 2. Dashed outline semicircle: diameter=780px, radius=390, center (960,1080), stroke 4px -->
-                <path d="M 570 1080 A 390 390 0 0 1 1350 1080" fill="none" stroke="#000000" stroke-width="4" stroke-dasharray="8,4"/>
-                
-                <!-- Center text inside arc -->
-                <text x="960" y="920" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="48">AI in Education</text>
-                <text x="960" y="980" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="48">Research</text>
-                
-                <!-- 5 Function circles on diameter 1100px semicircle (radius 550 from center 960,1080) -->
-                <!-- Circle radius = 120, font: single-line 30px, two-line 24px -->
-                
-                <!-- Vocabulary: angle 160° -> x=443, y=892 -->
-                <circle class="svg-node" id="node-vocab" cx="443" cy="892" r="120" fill="#000000" onclick="toggleBranch(1)" style="cursor:pointer"/>
-                <text x="443" y="900" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="30">Vocabulary</text>
-                
-                <!-- Writing: angle 125° -> x=645, y=629 -->
-                <circle class="svg-node" id="node-writing" cx="645" cy="629" r="120" fill="#000000" onclick="toggleBranch(2)" style="cursor:pointer"/>
-                <text x="645" y="637" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="30">Writing</text>
-                
-                <!-- Assessment & Motivation: angle 90° -> x=960, y=530 -->
-                <circle class="svg-node" id="node-assess" cx="960" cy="530" r="120" fill="#000000" onclick="toggleBranch(3)" style="cursor:pointer"/>
-                <text x="960" y="520" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">Assessment</text>
-                <text x="960" y="548" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">& Motivation</text>
-                
-                <!-- Curriculum Design: angle 55° -> x=1275, y=629 -->
-                <circle class="svg-node" id="node-curric" cx="1275" cy="629" r="120" fill="#000000" onclick="toggleBranch(4)" style="cursor:pointer"/>
-                <text x="1275" y="619" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">Curriculum</text>
-                <text x="1275" y="647" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="24">Design</text>
-                
-                <!-- Review: angle 20° -> x=1477, y=892 -->
-                <circle class="svg-node" id="node-review" cx="1477" cy="892" r="120" fill="#000000" onclick="toggleBranch(5)" style="cursor:pointer"/>
-                <text x="1477" y="900" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="30">Review</text>
-                
-                <!-- Dashed arrows FROM dashed arc edge TO circle (removed per user request) -->
-            </svg>
+            <!-- Right side - Mindmap circles -->
+            <div class="mindmap-circles">
+                <!-- SVG Mindmap - adjusted viewBox to align right edge -->
+                <svg class="mindmap-svg" viewBox="0 0 1000 900" preserveAspectRatio="xMaxYMid meet">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+                            <polygon points="0 0, 10 4, 0 8" fill="#000000"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Center circle -->
+                    <circle cx="600" cy="450" r="150" fill="#000000"/>
+                    <text x="600" y="435" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="32">AI in Education</text>
+                    <text x="600" y="475" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="32">Research</text>
+                    
+                    <!-- Dashed circle -->
+                    <circle cx="600" cy="450" r="350" fill="none" stroke="#000000" stroke-width="3" stroke-dasharray="12,6"/>
+                    
+                    <!-- Rotating group for 5 circles -->
+                    <g class="orbit-group" id="orbitGroup">
+                        <!-- Vocabulary: starting at left (180°) -->
+                        <g class="orbit-node" data-branch="1" transform="translate(250, 450)">
+                            <circle class="svg-node" id="node-vocab" cx="0" cy="0" r="90" fill="#000000" style="cursor:pointer"/>
+                            <text x="0" y="12" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Vocabulary</text>
+                        </g>
+                        
+                        <!-- Writing: 72° from Vocabulary (252°) -->
+                        <g class="orbit-node" data-branch="2" transform="translate(395, 175)">
+                            <circle class="svg-node" id="node-writing" cx="0" cy="0" r="90" fill="#000000" style="cursor:pointer"/>
+                            <text x="0" y="12" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Writing</text>
+                        </g>
+                        
+                        <!-- Assessment: 144° from Vocabulary (324°) -->
+                        <g class="orbit-node" data-branch="3" transform="translate(712, 125)">
+                            <circle class="svg-node" id="node-assess" cx="0" cy="0" r="90" fill="#000000" style="cursor:pointer"/>
+                            <text x="0" y="-2" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="22">Assessment</text>
+                            <text x="0" y="24" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="22">& Motivation</text>
+                        </g>
+                        
+                        <!-- Curriculum: 216° from Vocabulary (36°) -->
+                        <g class="orbit-node" data-branch="4" transform="translate(857, 425)">
+                            <circle class="svg-node" id="node-curric" cx="0" cy="0" r="90" fill="#000000" style="cursor:pointer"/>
+                            <text x="0" y="-2" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="22">Curriculum</text>
+                            <text x="0" y="24" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="22">Design</text>
+                        </g>
+                        
+                        <!-- Review: 288° from Vocabulary (108°) -->
+                        <g class="orbit-node" data-branch="5" transform="translate(712, 725)">
+                            <circle class="svg-node" id="node-review" cx="0" cy="0" r="90" fill="#000000" style="cursor:pointer"/>
+                            <text x="0" y="12" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="bold" font-size="26">Review</text>
+                        </g>
+                    </g>
+                    
+                    <!-- Highlight line at left position -->
+                    <line x1="150" y1="450" x2="230" y2="450" stroke="#c41e3a" stroke-width="5" stroke-dasharray="15,8"/>
+                </svg>
+            </div>
         </div>
     </section>
 

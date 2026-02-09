@@ -1,12 +1,15 @@
 // Global state
 let currentLang = 'en';
 let activeBranch = null;
+let rotationAngle = 0;
+let rotationInterval = null;
 
 // DOM Ready
 document.addEventListener('DOMContentLoaded', function() {
     initTypewriter();
     initSmoothScroll();
     initNavHighlight();
+    initResearchRotation();
 });
 
 // Language Toggle
@@ -130,7 +133,10 @@ function toggleBranch(branchId) {
     
     // Different branch clicked - hide all first, then show new one
     allPaperGroups.forEach(group => group.classList.remove('active'));
-    allSvgNodes.forEach(node => node.classList.remove('active'));
+    allSvgNodes.forEach(node => {
+        node.classList.remove('active');
+        node.setAttribute('r', '90'); // Reset size
+    });
     
     // Show clicked paper group and highlight node
     if (clickedPaperGroup) {
@@ -138,10 +144,97 @@ function toggleBranch(branchId) {
     }
     if (clickedSvgNode) {
         clickedSvgNode.classList.add('active');
+        clickedSvgNode.setAttribute('r', '110'); // Enlarge active node
     }
     
     // Update active branch state
     activeBranch = branchId;
+}
+
+// Initialize research rotation animation
+function initResearchRotation() {
+    const orbitGroup = document.getElementById('orbitGroup');
+    if (!orbitGroup) return;
+    
+    const centerX = 600;
+    const centerY = 450;
+    const radius = 350;
+    const rotationSpeed = 0.1; // degrees per frame (调整为 0.1，约60秒转一圈)
+    
+    // 5 nodes starting positions (in degrees)
+    const nodes = [
+        { branch: 1, startAngle: 180, element: null }, // Vocabulary
+        { branch: 2, startAngle: 252, element: null }, // Writing
+        { branch: 3, startAngle: 324, element: null }, // Assessment
+        { branch: 4, startAngle: 36, element: null },  // Curriculum
+        { branch: 5, startAngle: 108, element: null }  // Review
+    ];
+    
+    // Get node elements
+    document.querySelectorAll('.orbit-node').forEach((node, index) => {
+        nodes[index].element = node;
+    });
+    
+    function updateRotation() {
+        rotationAngle += rotationSpeed;
+        if (rotationAngle >= 360) rotationAngle -= 360;
+        
+        // Update each node position and check if it's at the highlight position (left, 180°)
+        nodes.forEach((node, index) => {
+            const currentAngle = (node.startAngle + rotationAngle) % 360;
+            const radians = (currentAngle * Math.PI) / 180;
+            
+            const x = centerX + radius * Math.cos(radians);
+            const y = centerY + radius * Math.sin(radians);
+            
+            // Update position
+            node.element.setAttribute('transform', `translate(${x}, ${y})`);
+            
+            // Get the circle element
+            const circle = node.element.querySelector('.svg-node');
+            
+            // Check if node is near the left position (180° ± 10°)
+            const isAtHighlight = (currentAngle >= 170 && currentAngle <= 190);
+            
+            if (isAtHighlight) {
+                // Enlarge and highlight
+                circle.setAttribute('r', '110');
+                circle.setAttribute('fill', '#c41e3a');
+                
+                // Show corresponding paper group
+                if (activeBranch !== node.branch) {
+                    toggleBranch(node.branch);
+                }
+            } else {
+                // Reset to normal
+                if (activeBranch !== node.branch) {
+                    circle.setAttribute('r', '90');
+                    circle.setAttribute('fill', '#000000');
+                }
+            }
+            
+            // Text stays upright - no rotation needed
+        });
+        
+        requestAnimationFrame(updateRotation);
+    }
+    
+    // Start animation
+    updateRotation();
+}
+
+// Pause rotation on hover (optional enhancement)
+function pauseResearchRotation() {
+    if (rotationInterval) {
+        clearInterval(rotationInterval);
+        rotationInterval = null;
+    }
+}
+
+function resumeResearchRotation() {
+    if (!rotationInterval) {
+        initResearchRotation();
+    }
 }
 
 // Lightbox
