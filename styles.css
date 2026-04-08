@@ -927,13 +927,13 @@ body {
     font-size: 36px;
     font-weight: 400;
     color: var(--text-dark);
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     width: 100%;
     align-items: center;
 }
@@ -941,12 +941,12 @@ body {
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     background: var(--secondary-dark);
-    padding: 12px 25px;
+    padding: 10px 20px;
     border-radius: 30px;
     color: #fff;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .contact-icon-img {
@@ -962,13 +962,6 @@ body {
 
 .contact-item a:hover {
     text-decoration: underline;
-}
-
-.social-handle {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-dark);
 }
 
 .contact-right h2 {
