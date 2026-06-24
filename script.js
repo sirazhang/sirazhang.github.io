@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initNavHighlight();
     initResearchRotation();
+    initEducationReveal();
 });
 
 // Language Toggle
@@ -248,6 +249,74 @@ function openLightbox(imgSrc) {
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
+}
+
+// Reveal education cards/markers sequentially when section scrolls into view
+function initEducationReveal() {
+    const eduSection = document.querySelector('.education-section');
+    if (!eduSection) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            } else {
+                // Reset so the animation replays next time it scrolls into view
+                entry.target.classList.remove('in-view');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(eduSection);
+
+    // Reveal contact/others cards when scrolled into view
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) {
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        contactObserver.observe(contactSection);
+    }
+}
+
+// Copy to clipboard with visual feedback
+function copyToClipboard(text, element) {
+    const showCopied = () => {
+        element.classList.add('copied');
+        setTimeout(() => element.classList.remove('copied'), 1500);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(() => {
+            fallbackCopy(text);
+            showCopied();
+        });
+    } else {
+        fallbackCopy(text);
+        showCopied();
+    }
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+        console.error('Copy failed', err);
+    }
+    document.body.removeChild(textarea);
 }
 
 // Skills Color Toggle
