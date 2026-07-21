@@ -1,3 +1,44 @@
+// ===== Sound: UI click effect =====
+function playClick() {
+    const s = document.getElementById('clickSound');
+    if (!s) return;
+    try {
+        s.currentTime = 0;
+        s.volume = 0.3;
+        const p = s.play();
+        if (p && p.catch) p.catch(() => {});
+    } catch (e) { /* audio not ready yet */ }
+}
+
+// Play a soft click on interactive elements (delegated, covers nav links,
+// CTA, DOI buttons, project links, copy pills, skill card, lang toggle)
+document.addEventListener('click', function(e) {
+    if (e.target.closest('a, button, .contact-copy, .svg-node, .others-card.skills-card, .paper-poster img')) {
+        playClick();
+    }
+});
+
+// ===== Sound: background music toggle =====
+// Browsers block autoplay, so music only starts from this user gesture.
+let musicPlaying = false;
+
+function toggleMusic() {
+    const bgm = document.getElementById('bgm');
+    const btn = document.getElementById('musicToggle');
+    if (!bgm || !btn) return;
+
+    if (musicPlaying) {
+        bgm.pause();
+        btn.classList.remove('playing');
+    } else {
+        bgm.volume = 0.25;
+        const p = bgm.play();
+        if (p && p.catch) p.catch(() => {});
+        btn.classList.add('playing');
+    }
+    musicPlaying = !musicPlaying;
+}
+
 // Global state
 let currentLang = 'en';
 let activeBranch = null;
@@ -116,39 +157,27 @@ function initNavHighlight() {
     });
 }
 
-// Toggle branch papers visibility - supports infinite mutual exclusion
+// Switch visible paper group with a crossfade (old group fades out on top)
 function toggleBranch(branchId) {
+    if (activeBranch === branchId) return; // already showing this group
+
     const allPaperGroups = document.querySelectorAll('.paper-group');
-    const allSvgNodes = document.querySelectorAll('.svg-node');
-    const clickedPaperGroup = document.getElementById(`papers-${branchId}`);
-    const clickedSvgNode = allSvgNodes[branchId - 1]; // 0-indexed
-    
-    // If clicking the same active branch, toggle it off
-    if (activeBranch === branchId) {
-        // Hide all
-        allPaperGroups.forEach(group => group.classList.remove('active'));
-        allSvgNodes.forEach(node => node.classList.remove('active'));
-        activeBranch = null;
-        return;
-    }
-    
-    // Different branch clicked - hide all first, then show new one
-    allPaperGroups.forEach(group => group.classList.remove('active'));
-    allSvgNodes.forEach(node => {
-        node.classList.remove('active');
-        node.setAttribute('r', '90'); // Reset size
+
+    allPaperGroups.forEach(group => {
+        if (group.classList.contains('active')) {
+            group.classList.remove('active');
+            group.classList.add('leaving');
+            setTimeout(() => group.classList.remove('leaving'), 300);
+        } else {
+            group.classList.remove('leaving');
+        }
     });
-    
-    // Show clicked paper group and highlight node
-    if (clickedPaperGroup) {
-        clickedPaperGroup.classList.add('active');
+
+    const nextGroup = document.getElementById(`papers-${branchId}`);
+    if (nextGroup) {
+        nextGroup.classList.add('active');
     }
-    if (clickedSvgNode) {
-        clickedSvgNode.classList.add('active');
-        clickedSvgNode.setAttribute('r', '110'); // Enlarge active node
-    }
-    
-    // Update active branch state
+
     activeBranch = branchId;
 }
 
@@ -156,12 +185,24 @@ function toggleBranch(branchId) {
 function initResearchRotation() {
     const orbitGroup = document.getElementById('orbitGroup');
     if (!orbitGroup) return;
-    
+
     const centerX = 600;
     const centerY = 450;
     const radius = 350;
-    const rotationSpeed = 0.1; // degrees per frame (调整为 0.1，约60秒转一圈)
-    
+    const rotationSpeed = 0.1; // degrees per frame (~60s per revolution)
+    const HIGHLIGHT_ANGLE = 180; // left position
+    const FALLOFF = 35;          // degrees over which the highlight eases off
+    const SWITCH_DIST = 12;      // degrees within which a node claims the papers
+
+    let paused = false;
+
+    // Pause rotation while the visitor reads / clicks the papers
+    const displayArea = document.querySelector('.paper-display-area');
+    if (displayArea) {
+        displayArea.addEventListener('mouseenter', () => { paused = true; });
+        displayArea.addEventListener('mouseleave', () => { paused = false; });
+    }
+
     // 5 nodes starting positions (in degrees)
     const nodes = [
         { branch: 1, startAngle: 180, element: null }, // Vocabulary
@@ -170,57 +211,68 @@ function initResearchRotation() {
         { branch: 4, startAngle: 36, element: null },  // Curriculum
         { branch: 5, startAngle: 108, element: null }  // Review
     ];
-    
-    // Get node elements
+
     document.querySelectorAll('.orbit-node').forEach((node, index) => {
         nodes[index].element = node;
     });
-    
+
+    const BLACK = [0, 0, 0];
+    const RED = [196, 30, 58]; // #c41e3a
+
+    function lerpColor(c1, c2, t) {
+        const r = Math.round(c1[0] + (c2[0] - c1[0]) * t);
+        const g = Math.round(c1[1] + (c2[1] - c1[1]) * t);
+        const b = Math.round(c1[2] + (c2[2] - c1[2]) * t);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function angleDist(a, b) {
+        return Math.abs(((a - b + 540) % 360) - 180);
+    }
+
+    function smoothstep(t) {
+        return t * t * (3 - 2 * t);
+    }
+
     function updateRotation() {
-        rotationAngle += rotationSpeed;
-        if (rotationAngle >= 360) rotationAngle -= 360;
-        
-        // Update each node position and check if it's at the highlight position (left, 180°)
-        nodes.forEach((node, index) => {
+        if (!paused) {
+            rotationAngle += rotationSpeed;
+            if (rotationAngle >= 360) rotationAngle -= 360;
+        }
+
+        let bestNode = null;
+        let bestDist = Infinity;
+
+        nodes.forEach(node => {
             const currentAngle = (node.startAngle + rotationAngle) % 360;
             const radians = (currentAngle * Math.PI) / 180;
-            
             const x = centerX + radius * Math.cos(radians);
             const y = centerY + radius * Math.sin(radians);
-            
-            // Update position
             node.element.setAttribute('transform', `translate(${x}, ${y})`);
-            
-            // Get the circle element
-            const circle = node.element.querySelector('.svg-node');
-            
-            // Check if node is near the left position (180° ± 10°)
-            const isAtHighlight = (currentAngle >= 170 && currentAngle <= 190);
-            
-            if (isAtHighlight) {
-                // Enlarge and highlight
-                circle.setAttribute('r', '110');
-                circle.setAttribute('fill', '#c41e3a');
-                
-                // Show corresponding paper group
-                if (activeBranch !== node.branch) {
-                    toggleBranch(node.branch);
-                }
-            } else {
-                // Reset to normal
-                if (activeBranch !== node.branch) {
-                    circle.setAttribute('r', '90');
-                    circle.setAttribute('fill', '#000000');
-                }
+
+            // Continuous highlight: radius & colour interpolate with angular
+            // distance to the left position instead of snapping on/off
+            const dist = angleDist(currentAngle, HIGHLIGHT_ANGLE);
+            if (dist < bestDist) {
+                bestDist = dist;
+                bestNode = node;
             }
-            
-            // Text stays upright - no rotation needed
+
+            const t = smoothstep(Math.max(0, 1 - dist / FALLOFF));
+            const circle = node.element.querySelector('.svg-node');
+            circle.setAttribute('r', (90 + 22 * t).toFixed(1));
+            circle.setAttribute('fill', lerpColor(BLACK, RED, t));
         });
-        
+
+        // The closest node claims the paper list once it is well inside the
+        // highlight zone; it keeps it until another node takes over (no flicker)
+        if (bestNode && bestDist < SWITCH_DIST && activeBranch !== bestNode.branch) {
+            toggleBranch(bestNode.branch);
+        }
+
         requestAnimationFrame(updateRotation);
     }
-    
-    // Start animation
+
     updateRotation();
 }
 
@@ -276,8 +328,12 @@ function initEducationReveal() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
+                    // After the entrance stagger finishes, remove the delays so
+                    // hover effects respond instantly (see .settled in CSS)
+                    setTimeout(() => entry.target.classList.add('settled'), 1300);
                 } else {
                     entry.target.classList.remove('in-view');
+                    entry.target.classList.remove('settled');
                 }
             });
         }, { threshold: 0.2 });
